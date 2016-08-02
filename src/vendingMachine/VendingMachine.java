@@ -11,11 +11,22 @@ public class VendingMachine {
 
 	public void insertCoin(String coin) {
 			coin = coin.toLowerCase();
+			BigDecimal increase = new BigDecimal(0); 
 			switch(coin){
 			case("nickel"):
-				currentAmount = currentAmount.add(new BigDecimal(.05));
+				increase = new BigDecimal(.05);
 				break;
+			case("dime"):
+				increase = new BigDecimal(.10);
+				break;
+			case("quarter"):
+				increase = new BigDecimal(.25);
+				break;
+			default:
+				setDisplay("Invalid Coin");
+				return;
 			}
+		    currentAmount = currentAmount.add(increase);
 			setDisplay(n.format(currentAmount));
 	}
 	
