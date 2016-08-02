@@ -42,13 +42,29 @@ public class VendingMachineTest {
 		
 	}
 	
+	@Test
 	public void when$1HasBeenInsertedAndChipsSelectedDispenseChips(){
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		Chips chips = new Chips(); 
+		int before = Chips.getAmountInMachine();
 		vm.select(chips);
+		assertEquals(before - 1 , Chips.getAmountInMachine());
+		assertEquals("Thank You", vm.getDisplay());
+	}
+	
+	@Test
+	public void when75CentsHasBeenInsertedAndChipsSelectedDisplayPrice(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		Chips chips = new Chips(); 
+		int before = Chips.getAmountInMachine();
+		vm.select(chips);
+		assertEquals(before , Chips.getAmountInMachine());
+		assertEquals("Price: $1.00", vm.getDisplay());
 	}
 	
 }

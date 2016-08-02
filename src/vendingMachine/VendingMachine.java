@@ -44,6 +44,10 @@ public class VendingMachine {
 			currentAmount = currentAmount.subtract(chips.getPrice());
 			if(currentAmount.equals(0))
 				returnCoins();
+			setDisplay("Thank You");
+		}
+		else{
+			setDisplay("Price: " + n.format(chips.getPrice()));
 		}
 		
 	}
