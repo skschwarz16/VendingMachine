@@ -38,16 +38,16 @@ public class VendingMachine {
 		this.display = display;
 	}
 
-	public void select(Chips chips) {
-		if(currentAmount.compareTo(chips.getPrice()) >= 0){
-			chips.dispense();
-			currentAmount = currentAmount.subtract(chips.getPrice());
+	public <T extends Product> void select(T item) {
+		if(currentAmount.compareTo(item.getPrice()) >= 0){
+			item.dispense();
+			currentAmount = currentAmount.subtract(item.getPrice());
 			if(currentAmount.equals(0))
 				returnCoins();
 			setDisplay("Thank You");
 		}
 		else{
-			setDisplay("Price: " + n.format(chips.getPrice()));
+			setDisplay("Price: " + n.format(item.getPrice()));
 		}
 		
 	}

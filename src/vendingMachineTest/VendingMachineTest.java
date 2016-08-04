@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import vendingMachine.Candy;
 import vendingMachine.Chips;
+import vendingMachine.Cola;
 import vendingMachine.VendingMachine;
 
 public class VendingMachineTest {
@@ -43,9 +45,7 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void when$1HasBeenInsertedAndChipsSelectedDispenseChips(){
-		vm.insertCoin("Quarter");
-		vm.insertCoin("Quarter");
+	public void when50CentsHasBeenInsertedAndChipsSelectedDispenseChips(){
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		Chips chips = new Chips(); 
@@ -56,15 +56,39 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void when75CentsHasBeenInsertedAndChipsSelectedDisplayPrice(){
-		vm.insertCoin("Quarter");
-		vm.insertCoin("Quarter");
+	public void when25CentsHasBeenInsertedAndChipsSelectedDisplayPrice(){
 		vm.insertCoin("Quarter");
 		Chips chips = new Chips(); 
 		int before = Chips.getAmountInMachine();
 		vm.select(chips);
 		assertEquals(before , Chips.getAmountInMachine());
-		assertEquals("Price: $1.00", vm.getDisplay());
+		assertEquals("Price: $0.50", vm.getDisplay());
+	}
+	
+	@Test
+	public void when$1HasBeenInsertedAndColaSelectedDispenseCola(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		Cola cola = new Cola(); 
+		int before = Cola.getAmountInMachine();
+		vm.select(cola);
+		assertEquals(before - 1 , Cola.getAmountInMachine());
+		assertEquals("Thank You", vm.getDisplay());
+	}
+	
+	@Test
+	public void when65CentsHasBeenInsertedAndCandySelectedDispenseCandy(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Nickel");
+		vm.insertCoin("Dime");
+		Candy candy = new Candy(); 
+		int before = Candy.getAmountInMachine();
+		vm.select(candy);
+		assertEquals(before - 1 , Candy.getAmountInMachine());
+		assertEquals("Thank You", vm.getDisplay());
 	}
 	
 }
