@@ -1,26 +1,33 @@
 package vendingMachine;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class VendingMachine {
 	private BigDecimal currentAmount = new BigDecimal(0);
+	public BigDecimal nickelValue = new BigDecimal(".05");
+	public BigDecimal dimeValue = new BigDecimal(".10");
+	public BigDecimal quarterValue = new BigDecimal(".25");
 	NumberFormat n = NumberFormat.getCurrencyInstance(Locale.US);
 	private String display = "INSERT COIN";
+	private ArrayList<String> coinsReturned = new ArrayList<>(); 
+	
 
 	public void insertCoin(String coin) {
 			coin = coin.toLowerCase();
 			BigDecimal increase = new BigDecimal(0); 
 			switch(coin){
 			case("nickel"):
-				increase = new BigDecimal(".05");
+				increase = nickelValue;
 				break;
 			case("dime"):
-				increase = new BigDecimal(".10");
+				increase = dimeValue;
 				break;
 			case("quarter"):
-				increase = new BigDecimal(".25");
+				increase = quarterValue;
 				break;
 			default:
 				setDisplay("Invalid Coin");
@@ -28,14 +35,6 @@ public class VendingMachine {
 			}
 		    currentAmount = currentAmount.add(increase);
 			setDisplay(n.format(currentAmount));
-	}
-	
-	public String getDisplay() {
-		return display;
-	}
-
-	public void setDisplay(String display) {
-		this.display = display;
 	}
 
 	public <T extends Product> void select(T item) {
@@ -52,10 +51,25 @@ public class VendingMachine {
 		
 	}
 
-	private void returnCoins() {
-		//coins released to coin return
-		currentAmount = new BigDecimal(0);
+	public void returnCoins() {
+		int numberOfQuartersToReturn = currentAmount.divideToIntegralValue(quarterValue).intValueExact();
+		currentAmount = currentAmount.remainder(quarterValue);
+		for(int i = 0; i < numberOfQuartersToReturn; i++){
+			coinsReturned.add("Quarter");
+		}
 		
+	}
+
+	public String[] getCoinsReturned() {
+		return coinsReturned.toArray(new String[0]); 
+	}
+	
+	public String getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(String display) {
+		this.display = display;
 	}
 
 }

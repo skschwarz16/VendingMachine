@@ -1,6 +1,7 @@
 package vendingMachineTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -89,6 +90,18 @@ public class VendingMachineTest {
 		vm.select(candy);
 		assertEquals(before - 1 , candy.getAmountInMachine());
 		assertEquals("Thank You", vm.getDisplay());
+	}
+	
+	@Test 
+	public void when50CentsNeedsReturned2QuartersAreReturned(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.returnCoins(); 
+		String[] results = vm.getCoinsReturned(); 
+		String[] expected = {"Quarter", "Quarter"};
+		assertArrayEquals(results, expected);
+		
+		
 	}
 	
 }
