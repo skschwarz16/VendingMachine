@@ -100,7 +100,32 @@ public class VendingMachineTest {
 		String[] results = vm.getCoinsReturned(); 
 		String[] expected = {"Quarter", "Quarter"};
 		assertArrayEquals(results, expected);
-		
+	}
+	
+	@Test 
+	public void when65CentsNeedsReturned2Quarters1Dime1NickelAreReturned(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Nickel");
+		vm.insertCoin("Nickel");
+		vm.insertCoin("Nickel");
+		vm.returnCoins(); 
+		String[] results = vm.getCoinsReturned(); 
+		String[] expected = {"Quarter", "Quarter", "Dime", "Nickel"};
+		assertArrayEquals(results, expected);
+	}
+	
+	@Test
+	public void when$1CentsHasBeenInsertedAndCandySelectedReturn1Quarter1Dime(){
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		vm.insertCoin("Quarter");
+		Candy candy = new Candy(); 
+		vm.select(candy);
+		String[] results = vm.getCoinsReturned(); 
+		String[] expected = {"Quarter", "Dime"};
+		assertArrayEquals(results, expected);
 		
 	}
 	

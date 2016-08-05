@@ -52,10 +52,26 @@ public class VendingMachine {
 	}
 
 	public void returnCoins() {
-		int numberOfQuartersToReturn = currentAmount.divideToIntegralValue(quarterValue).intValueExact();
-		currentAmount = currentAmount.remainder(quarterValue);
-		for(int i = 0; i < numberOfQuartersToReturn; i++){
-			coinsReturned.add("Quarter");
+		if(!currentAmount.equals(0)){
+			int numberOfQuartersToReturn = currentAmount.divideToIntegralValue(quarterValue).intValueExact();
+			currentAmount = currentAmount.remainder(quarterValue);
+			for(int i = 0; i < numberOfQuartersToReturn; i++){
+				coinsReturned.add("Quarter");
+			}
+		}
+		if(!currentAmount.equals(0)){
+			int numberOfDimesToReturn = currentAmount.divideToIntegralValue(dimeValue).intValueExact();
+			currentAmount = currentAmount.remainder(dimeValue);
+			for(int i = 0; i < numberOfDimesToReturn; i++){
+				coinsReturned.add("Dime");
+			}
+		}
+		if(!currentAmount.equals(0)){
+			int numberOfNickelsToReturn = currentAmount.divideToIntegralValue(nickelValue).intValueExact();
+			currentAmount = currentAmount.remainder(nickelValue);
+			for(int i = 0; i < numberOfNickelsToReturn; i++){
+				coinsReturned.add("Nickel");
+			}
 		}
 		
 	}
