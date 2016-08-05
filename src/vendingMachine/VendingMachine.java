@@ -42,7 +42,7 @@ public class VendingMachine {
 		if(currentAmount.compareTo(item.getPrice()) >= 0){
 			item.dispense();
 			currentAmount = currentAmount.subtract(item.getPrice());
-			if(currentAmount.equals(0))
+			if(!currentAmount.equals(0))
 				returnCoins();
 			setDisplay("Thank You");
 		}

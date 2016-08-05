@@ -8,5 +8,14 @@ public class Candy extends Product {
 	public BigDecimal getPrice() {
 		return price;
 	}
+	
+	protected void setAmountInMachine(int amount) {
+		Candy.amountInMachine = amount;
+		
+	}
+
+	public int getAmountInMachine() {
+		return amountInMachine;
+	}
 
 }

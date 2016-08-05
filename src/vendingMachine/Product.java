@@ -3,22 +3,14 @@ package vendingMachine;
 import java.math.BigDecimal;
 
 public abstract class Product{
-	static int amountInMachine = 0;
-	
+		
 	public void dispense() {
-		setAmountInMachine(amountInMachine - 1); 
+		setAmountInMachine(getAmountInMachine() - 1); 
 	}
 
-	public BigDecimal getPrice() {
-		return null;
-	}
+	public abstract BigDecimal getPrice();
 
-	private static void setAmountInMachine(int amountInMachine) {
-		Product.amountInMachine = amountInMachine;
-	}
+	abstract void setAmountInMachine(int amount);
 
-	public static int getAmountInMachine() {
-		return amountInMachine;
-	}
-
+	abstract int getAmountInMachine();
 }

@@ -49,9 +49,9 @@ public class VendingMachineTest {
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		Chips chips = new Chips(); 
-		int before = Chips.getAmountInMachine();
+		int before = chips.getAmountInMachine();
 		vm.select(chips);
-		assertEquals(before - 1 , Chips.getAmountInMachine());
+		assertEquals(before - 1 , chips.getAmountInMachine());
 		assertEquals("Thank You", vm.getDisplay());
 	}
 	
@@ -59,9 +59,9 @@ public class VendingMachineTest {
 	public void when25CentsHasBeenInsertedAndChipsSelectedDisplayPrice(){
 		vm.insertCoin("Quarter");
 		Chips chips = new Chips(); 
-		int before = Chips.getAmountInMachine();
+		int before = chips.getAmountInMachine();
 		vm.select(chips);
-		assertEquals(before , Chips.getAmountInMachine());
+		assertEquals(before , chips.getAmountInMachine());
 		assertEquals("Price: $0.50", vm.getDisplay());
 	}
 	
@@ -72,9 +72,9 @@ public class VendingMachineTest {
 		vm.insertCoin("Quarter");
 		vm.insertCoin("Quarter");
 		Cola cola = new Cola(); 
-		int before = Cola.getAmountInMachine();
+		int before = cola.getAmountInMachine();
 		vm.select(cola);
-		assertEquals(before - 1 , Cola.getAmountInMachine());
+		assertEquals(before - 1 , cola.getAmountInMachine());
 		assertEquals("Thank You", vm.getDisplay());
 	}
 	
@@ -85,9 +85,9 @@ public class VendingMachineTest {
 		vm.insertCoin("Nickel");
 		vm.insertCoin("Dime");
 		Candy candy = new Candy(); 
-		int before = Candy.getAmountInMachine();
+		int before = candy.getAmountInMachine();
 		vm.select(candy);
-		assertEquals(before - 1 , Candy.getAmountInMachine());
+		assertEquals(before - 1 , candy.getAmountInMachine());
 		assertEquals("Thank You", vm.getDisplay());
 	}
 	
